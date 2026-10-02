@@ -1,0 +1,12 @@
+﻿model_id,params_b,dtype,weights_gib,min_vram_gib,license,modality,source_id,credibility,fetched_at,note
+Qwen3-8B,8,bf16,16.0,24,Apache-2.0,text,S5,secondary,2026-10-02,公开部署示例中出现
+Qwen2.5-14B,14,bf16,28.0,32,Apache-2.0,text,S5,secondary,2026-10-02,Ollama 适配示例中出现
+Qwen3-32B,32,bf16,64.0,80,Apache-2.0,text,S1,secondary,2026-10-02,官方适配列表口径
+DeepSeek-V3,671,bf16,1342.0,1400,DeepSeek License,text,S1,secondary,2026-10-02,MoE，激活参数远小于总量
+GLM-4-9B,9,bf16,18.0,24,智谱开放协议,text,S1,secondary,2026-10-02,公开适配列表口径
+Hunyuan-Large,389,bf16,778.0,800,腾讯开放协议,text,S1,secondary,2026-10-02,公开适配列表口径
+LLaMA-3-8B,8,bf16,16.0,24,Llama3 Community,text,S1,secondary,2026-10-02,公开适配列表口径
+LLaMA-2-13B,13,bf16,26.0,32,Llama2 Community,text,S1,secondary,2026-10-02,公开适配列表口径
+ChatGLM3-6B,6,bf16,12.0,24,智谱开放协议,text,S1,secondary,2026-10-02,公开适配列表口径
+Baichuan2-7B,7,bf16,14.0,24,Baichuan License,text,S1,secondary,2026-10-02,公开适配列表口径
+YOLOv8n-detect,-,-,-,4,AGPL-3.0,vision,S8,secondary,2026-10-02,视觉检测典型小模型

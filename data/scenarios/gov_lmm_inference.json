@@ -1,0 +1,20 @@
+{
+  "scenario_id": "gov_lmm_inference",
+  "name": "政务大厅本地大模型推理",
+  "industry": "政务",
+  "workload": {
+    "model_id": "Qwen3-8B",
+    "concurrent_sessions": 40,
+    "target_tps_per_session": 20,
+    "input_len_tokens": 1500,
+    "output_len_tokens": 500,
+    "p95_latency_ms": 3000,
+    "availability_target": 0.999
+  },
+  "constraints": {
+    "data_residency": "境内",
+    "os": "麒麟 V10 SP2",
+    "must_offline": true
+  },
+  "assumption_refs": ["A-02", "A-04"]
+}

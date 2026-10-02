@@ -1,0 +1,302 @@
+{
+  "scenario": {
+    "scenario_id": "finance_quant_finetune",
+    "name": "金融行业私有化微调与推理",
+    "industry": "金融",
+    "workload": {
+      "model_id": "Qwen2.5-14B",
+      "concurrent_sessions": 16,
+      "target_tps_per_session": 15,
+      "input_len_tokens": 4000,
+      "output_len_tokens": 800,
+      "p95_latency_ms": 6000,
+      "availability_target": 0.9995,
+      "finetune": true,
+      "finetune_method": "LoRA"
+    },
+    "constraints": {
+      "data_residency": "境内",
+      "os": "CentOS 8",
+      "must_offline": true
+    },
+    "assumption_refs": [
+      "A-02",
+      "A-04"
+    ]
+  },
+  "matrix": {
+    "scenario_id": "finance_quant_finetune",
+    "scenario_name": "金融行业私有化微调与推理",
+    "model_id": "Qwen2.5-14B",
+    "weights_gib": 28.0,
+    "kv_cache_gib": null,
+    "required_gib": 32.2,
+    "required_gib_basis": "权重 28.00 GiB × 运行时余量系数 1.15（**KV Cache 未计入：模型结构参数未收录，本估算为下界**）",
+    "entries": [
+      {
+        "dcu": "BW100",
+        "verdict": "supported",
+        "reason": "显存余量 49.7%，高于 15% 阈值；该卡需按内核版本选择不同 DTK 分支（rock-*），部署时须锁定版本组合",
+        "evidence": [
+          {
+            "what": "DCU 规格",
+            "detail": "BW100（来源 S5，可信度 secondary）"
+          },
+          {
+            "what": "软件栈覆盖",
+            "detail": "支持该卡的 DTK 版本：0.3.5, 0.5.0, 24.04, 25.04, rock-6.3（来源 S1, S5）"
+          }
+        ],
+        "dcu_vram_gib": 64.0,
+        "required_gib": 32.2,
+        "stack_versions": [
+          "0.3.5",
+          "0.5.0",
+          "24.04",
+          "25.04",
+          "rock-6.3"
+        ],
+        "version_lock_required": true,
+        "meets_model_min_vram": true,
+        "vram_headroom": 0.4969
+      },
+      {
+        "dcu": "K100-AI",
+        "verdict": "supported",
+        "reason": "显存余量 49.7%，高于 15% 阈值；该卡需按内核版本选择不同 DTK 分支（rock-*），部署时须锁定版本组合",
+        "evidence": [
+          {
+            "what": "DCU 规格",
+            "detail": "K100-AI（来源 S5，可信度 secondary）"
+          },
+          {
+            "what": "软件栈覆盖",
+            "detail": "支持该卡的 DTK 版本：0.3.5, 0.5.0, 24.04, 25.04, rock-6.3（来源 S1, S5）"
+          }
+        ],
+        "dcu_vram_gib": 64.0,
+        "required_gib": 32.2,
+        "stack_versions": [
+          "0.3.5",
+          "0.5.0",
+          "24.04",
+          "25.04",
+          "rock-6.3"
+        ],
+        "version_lock_required": true,
+        "meets_model_min_vram": true,
+        "vram_headroom": 0.4969
+      },
+      {
+        "dcu": "K100",
+        "verdict": "not_recommended",
+        "reason": "权重与 KV Cache 估算合计 32.20 GiB，超过单卡显存 32.00 GiB，需多卡切分或换更小模型；该卡需按内核版本选择不同 DTK 分支（rock-*），部署时须锁定版本组合",
+        "evidence": [
+          {
+            "what": "DCU 规格",
+            "detail": "K100（来源 S5，可信度 secondary）"
+          },
+          {
+            "what": "软件栈覆盖",
+            "detail": "支持该卡的 DTK 版本：0.3.5, 0.5.0, 0.6.0, 24.04, 25.04, rock-5.7（来源 S1, S5）"
+          }
+        ],
+        "dcu_vram_gib": 32.0,
+        "required_gib": 32.2,
+        "stack_versions": [
+          "0.3.5",
+          "0.5.0",
+          "0.6.0",
+          "24.04",
+          "25.04",
+          "rock-5.7"
+        ],
+        "version_lock_required": true,
+        "meets_model_min_vram": true,
+        "vram_headroom": -0.0062
+      },
+      {
+        "dcu": "Z100",
+        "verdict": "not_recommended",
+        "reason": "权重与 KV Cache 估算合计 32.20 GiB，超过单卡显存 32.00 GiB，需多卡切分或换更小模型；该卡需按内核版本选择不同 DTK 分支（rock-*），部署时须锁定版本组合",
+        "evidence": [
+          {
+            "what": "DCU 规格",
+            "detail": "Z100（来源 S5，可信度 secondary）"
+          },
+          {
+            "what": "软件栈覆盖",
+            "detail": "支持该卡的 DTK 版本：0.3.5, 0.5.0, 24.04, 25.04, rock-4.0, rock-5.2, rock-5.7（来源 S1, S5）"
+          },
+          {
+            "what": "来源冲突（已消解）",
+            "detail": "采用 10.8，冲突已记录待人工核实；字段 fp32_tflops"
+          },
+          {
+            "what": "来源冲突（已消解）",
+            "detail": "采用 250.0，冲突已记录待人工核实；字段 tdp_w"
+          },
+          {
+            "what": "数据可信度",
+            "detail": "该型号存在 unverified 级来源，相关字段不作为判定依据"
+          }
+        ],
+        "dcu_vram_gib": 32.0,
+        "required_gib": 32.2,
+        "stack_versions": [
+          "0.3.5",
+          "0.5.0",
+          "24.04",
+          "25.04",
+          "rock-4.0",
+          "rock-5.2",
+          "rock-5.7"
+        ],
+        "version_lock_required": true,
+        "meets_model_min_vram": true,
+        "vram_headroom": -0.0062
+      },
+      {
+        "dcu": "Z100L",
+        "verdict": "not_recommended",
+        "reason": "权重与 KV Cache 估算合计 32.20 GiB，超过单卡显存 32.00 GiB，需多卡切分或换更小模型；该卡需按内核版本选择不同 DTK 分支（rock-*），部署时须锁定版本组合",
+        "evidence": [
+          {
+            "what": "DCU 规格",
+            "detail": "Z100L（来源 S5，可信度 secondary）"
+          },
+          {
+            "what": "软件栈覆盖",
+            "detail": "支持该卡的 DTK 版本：0.3.5, 0.5.0, 24.04, 25.04, rock-4.0, rock-5.2, rock-5.7（来源 S1, S5）"
+          }
+        ],
+        "dcu_vram_gib": 32.0,
+        "required_gib": 32.2,
+        "stack_versions": [
+          "0.3.5",
+          "0.5.0",
+          "24.04",
+          "25.04",
+          "rock-4.0",
+          "rock-5.2",
+          "rock-5.7"
+        ],
+        "version_lock_required": true,
+        "meets_model_min_vram": true,
+        "vram_headroom": -0.0062
+      }
+    ],
+    "swstack_versions_in_catalog": [
+      "0.3.5",
+      "0.5.0",
+      "0.6.0",
+      "24.04",
+      "25.04",
+      "rock-4.0",
+      "rock-5.2",
+      "rock-5.7",
+      "rock-6.3"
+    ],
+    "scope_note": "本矩阵不含任何厂商私有测试数据；每条判定的证据均指向 data/ 下的公开资料行。"
+  },
+  "tuning": {
+    "scenario_id": "finance_quant_finetune",
+    "items": [
+      {
+        "dcu": "BW100",
+        "rule_id": "T-04",
+        "title": "启用连续批处理提升吞吐",
+        "action": "使用支持连续批处理的推理框架（catalog 中已收录 vLLM-DCU 适配版本）",
+        "basis": "连续批处理是推理框架的通用能力，可显著提升并发场景吞吐（A-02）",
+        "risk": "并发过高会推高 P95 时延，须与延迟目标一起验收",
+        "triggered_by": "矩阵判定 BW100：supported"
+      },
+      {
+        "dcu": "BW100",
+        "rule_id": "T-05",
+        "title": "推理与微调资源分离",
+        "action": "LoRA 等轻量微调使用独立节点，不与在线推理服务混部",
+        "basis": "微调任务的显存峰值会挤占在线服务的余量，混部会使延迟承诺失效",
+        "risk": "增加节点数，成本上升",
+        "triggered_by": "矩阵判定 BW100：supported"
+      },
+      {
+        "dcu": "BW100",
+        "rule_id": "T-06",
+        "title": "首 token 延迟需单独压测",
+        "action": "对首 token 延迟单独设定验收指标，不与稳态吞吐混用",
+        "basis": "首 token 延迟由 prefill 阶段主导，与 decode 吞吐不是同一瓶颈（A-02）",
+        "risk": "该指标依赖真实输入长度，实验室数据不可直接外推",
+        "triggered_by": "矩阵判定 BW100：supported"
+      },
+      {
+        "dcu": "K100-AI",
+        "rule_id": "T-04",
+        "title": "启用连续批处理提升吞吐",
+        "action": "使用支持连续批处理的推理框架（catalog 中已收录 vLLM-DCU 适配版本）",
+        "basis": "连续批处理是推理框架的通用能力，可显著提升并发场景吞吐（A-02）",
+        "risk": "并发过高会推高 P95 时延，须与延迟目标一起验收",
+        "triggered_by": "矩阵判定 K100-AI：supported"
+      },
+      {
+        "dcu": "K100-AI",
+        "rule_id": "T-05",
+        "title": "推理与微调资源分离",
+        "action": "LoRA 等轻量微调使用独立节点，不与在线推理服务混部",
+        "basis": "微调任务的显存峰值会挤占在线服务的余量，混部会使延迟承诺失效",
+        "risk": "增加节点数，成本上升",
+        "triggered_by": "矩阵判定 K100-AI：supported"
+      },
+      {
+        "dcu": "K100-AI",
+        "rule_id": "T-06",
+        "title": "首 token 延迟需单独压测",
+        "action": "对首 token 延迟单独设定验收指标，不与稳态吞吐混用",
+        "basis": "首 token 延迟由 prefill 阶段主导，与 decode 吞吐不是同一瓶颈（A-02）",
+        "risk": "该指标依赖真实输入长度，实验室数据不可直接外推",
+        "triggered_by": "矩阵判定 K100-AI：supported"
+      }
+    ],
+    "skipped": [
+      {
+        "dcu": "K100",
+        "verdict": "not_recommended",
+        "reason": "权重与 KV Cache 估算合计 32.20 GiB，超过单卡显存 32.00 GiB，需多卡切分或换更小模型；该卡需按内核版本选择不同 DTK 分支（rock-*），部署时须锁定版本组合",
+        "why_no_tuning": "该型号判定为 not_recommended，按 A-05 边界不给调优建议 —— 不可推荐的组合调参无效，数据不全时给建议等于误导"
+      },
+      {
+        "dcu": "Z100",
+        "verdict": "not_recommended",
+        "reason": "权重与 KV Cache 估算合计 32.20 GiB，超过单卡显存 32.00 GiB，需多卡切分或换更小模型；该卡需按内核版本选择不同 DTK 分支（rock-*），部署时须锁定版本组合",
+        "why_no_tuning": "该型号判定为 not_recommended，按 A-05 边界不给调优建议 —— 不可推荐的组合调参无效，数据不全时给建议等于误导"
+      },
+      {
+        "dcu": "Z100L",
+        "verdict": "not_recommended",
+        "reason": "权重与 KV Cache 估算合计 32.20 GiB，超过单卡显存 32.00 GiB，需多卡切分或换更小模型；该卡需按内核版本选择不同 DTK 分支（rock-*），部署时须锁定版本组合",
+        "why_no_tuning": "该型号判定为 not_recommended，按 A-05 边界不给调优建议 —— 不可推荐的组合调参无效，数据不全时给建议等于误导"
+      }
+    ],
+    "scope_note": "全部建议均来自本文件内登记的规则集，无来源依据的建议不生成。"
+  },
+  "faq": {
+    "scenario_id": "finance_quant_finetune",
+    "entries": [
+      {
+        "id": "F-04",
+        "question": "同一张卡在不同 DTK 版本上行为不一致，怎么排查？",
+        "answer": "按 data/chips/swstack.csv 核对该型号的 base_kernel 要求与当前内核版本；再核对 DTK 分支是否在支持列表内。跨分支混用是最常见的原因。",
+        "triggered_by": "BW100 —— supported（显存余量 49.7%，高于 15% 阈值；该卡需按内核版本选择不同 DTK 分支（rock-*），部署时须锁定版本组合）",
+        "trace": "矩阵证据中出现「软件栈覆盖」时附加"
+      },
+      {
+        "id": "F-01",
+        "question": "模型权重放不进单卡显存，应该怎么处理？",
+        "answer": "三条路径：① 多卡切分（张量并行 / 流水并行），由框架自动分片；② 量化到更低精度（如 INT8，需评估精度损失）；③ 换更小参数量的模型并复评业务效果。本引擎不代为选择 —— 选择依据是业务对精度与成本的权衡。",
+        "triggered_by": "K100 —— not_recommended（权重与 KV Cache 估算合计 32.20 GiB，超过单卡显存 32.00 GiB，需多卡切分或换更小模型；该卡需按内核版本选择不同 DTK 分支（rock-*），部署时须锁定版本组合）",
+        "trace": "矩阵判定 not_recommended 时触发"
+      }
+    ],
+    "scope_note": "FAQ 全部由矩阵判定反推，不含任何与矩阵无关的通用问答；每条均可追溯到触发它的具体判定。"
+  }
+}

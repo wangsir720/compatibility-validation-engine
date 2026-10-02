@@ -1,0 +1,22 @@
+{
+  "scenario_id": "finance_quant_finetune",
+  "name": "金融行业私有化微调与推理",
+  "industry": "金融",
+  "workload": {
+    "model_id": "Qwen2.5-14B",
+    "concurrent_sessions": 16,
+    "target_tps_per_session": 15,
+    "input_len_tokens": 4000,
+    "output_len_tokens": 800,
+    "p95_latency_ms": 6000,
+    "availability_target": 0.9995,
+    "finetune": true,
+    "finetune_method": "LoRA"
+  },
+  "constraints": {
+    "data_residency": "境内",
+    "os": "CentOS 8",
+    "must_offline": true
+  },
+  "assumption_refs": ["A-02", "A-04"]
+}

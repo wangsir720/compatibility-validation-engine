@@ -1,0 +1,8 @@
+﻿model,series,vram_gib,vram_type,fp32_tflops,fp16_tflops,int8_tops,tdp_w,interface,source_id,credibility,fetched_at,note
+Z100,8000,32,HBM2,10.8,21.6,43.2,250,PCIe 4.0 x16,S5,secondary,2026-10-02,深算系列早期型号
+Z100,8000,32,HBM2,21.0,,,280,PCIe 4.0 x16,S6,unverified,2026-10-02,FP32 与 S5 冲突（10.8 / 21.0 TFLOPS），另有 8192 核说法
+Z100L,8000,32,HBM2,8.7,17.4,34.8,200,PCIe 4.0 x16,S5,secondary,2026-10-02,60 组计算单元 / 3840 计算核心
+Z100L,8000,32,HBM2,,,,,PCIe 4.0 x16,S7,secondary,2026-10-02,60 组计算单元 / 3840 核 / 1TB/s 带宽，算力口径与 S5 不同
+K100,8000,32,HBM2,12.2,24.5,49.1,280,PCIe 4.0 x16,S5,secondary,2026-10-02,通用计算取向
+K100-AI,8000,64,HBM2,49.0,192.0,384.0,300,PCIe 4.0 x16,S5,secondary,2026-10-02,TF32 96 TFLOPS / 显存带宽 1200GB/s，AI 训练推理主力
+BW100,8000,64,HBM2,,,,,OAM,S5,secondary,2026-10-02,数据中心形态，公开算力数据未查到

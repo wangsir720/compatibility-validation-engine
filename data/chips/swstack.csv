@@ -1,0 +1,11 @@
+﻿stack,component,version,base_kernel,supported_os,supports_dcu,source_id,credibility,fetched_at,note
+DTK,驱动与开发包,rock-4.0,5.6.x,Ubuntu 20.04/22.04;CentOS 7.9/8;麒麟 V10 SP1/SP2,Z100;Z100L,S5,secondary,2026-10-02,软件源 mirrors.hygon.com/dcu/apt
+DTK,驱动与开发包,rock-5.2,5.16.x,同上,Z100;Z100L,S5,secondary,2026-10-02,离线包 dtk-5.2.x-linux-x86_64.tar.gz
+DTK,驱动与开发包,rock-5.7,6.2.x,同上,Z100;Z100L;K100,S5,secondary,2026-10-02,离线包 dtk-5.7.1-linux-x86_64.tar.gz
+DTK,驱动与开发包,rock-6.3,6.3.x+,同上,K100-AI;BW100,S5,secondary,2026-10-02,K100-AI 与 BW100 需 rock-6.3 及以上内核
+DAS,AI 基础软件库,24.04,-,同上,全系列,S5,secondary,2026-10-02,torch 版本形如 2.4.1+das.opt2.dtk2504
+DAS,AI 基础软件库,25.04,-,同上,全系列,S5,secondary,2026-10-02,同上
+DAP,AI 应用平台,-,-,同上,全系列,S1,secondary,2026-10-02,公开资料仅见定性描述，版本号未查到
+vLLM,推理框架适配,0.5.0,-,Ubuntu 20.04,全系列,S5,secondary,2026-10-02,镜像标签含 dtk24.04.1
+vLLM,推理框架适配,0.6.0,-,Ubuntu 22.04,K100,S5,secondary,2026-10-02,镜像标签含 dtk25.04 与 k100
+Ollama,本地推理框架适配,0.3.5,-,Ubuntu 22.04,全系列,S5,secondary,2026-10-02,镜像标签含 dtk24.04
